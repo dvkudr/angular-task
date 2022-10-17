@@ -29,7 +29,10 @@ export class LoginComponent implements OnInit {
       let password = this.loginForm.value.password;
 
       this.commonService.fetchToken(login, password)
-        .subscribe((x) => this.commonService.token.next(x.access_token));
+        .subscribe({
+          next: (x) => this.commonService.token.next(x.access_token),
+          error: () => this.commonService.token.next("")
+        });
     }
   }
 
