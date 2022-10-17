@@ -1,16 +1,19 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { CommmonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  providers: [CommmonService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private commonService: CommmonService
   ) { }
 
   loginForm: FormGroup = this.fb.group({
@@ -26,7 +29,8 @@ export class LoginComponent implements OnInit {
       let login = this.loginForm.value.login;
       let password = this.loginForm.value.password;
 
-      console.log(login, password);
+      this.commonService.fetchToken(login, password)
+        .subscribe((x) => console.log(x));
     }
   }
 
