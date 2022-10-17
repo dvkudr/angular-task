@@ -12,16 +12,24 @@ export class CommmonService {
 
     constructor(private httpClient: HttpClient) {}
 
-    fetchToken(login: string, password: string) {
+    fetchToken(login: string, password: string) : Observable<TokenModel> {
         let body = new URLSearchParams();
         body.set('grant_type', 'client_credentials');
 
         let options = {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
-                .set('Authorization', `Basic ${btoa(`${login}:${password})`)}`),
+                .set('Authorization', 'Basic ' + btoa(login + ':' + password)),
         };
 
-        return this.httpClient.post(this.authUrl, body.toString(), options);
+        return this.httpClient.post<TokenModel>(this.authUrl, body.toString(), options);
     }    
+}
+
+export interface TokenModel {
+    access_token: string;
+    expires_in: number;
+    refresh_expires_in: number;
+    token_type: string;
+    scope: string;
 }
