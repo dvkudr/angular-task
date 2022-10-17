@@ -1,14 +1,13 @@
 import { Injectable } from "@angular/core"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Observable, Subject } from "rxjs";
+import { environment } from "../../../environments/environment"
 
 @Injectable({
     providedIn: 'root',
 })
 export class CommmonService {
-    private readonly authUrl =
-        'http://kong.fte3.10.97.145.65.nip.io' +
-        '/sso/auth/realms/mts/protocol/openid-connect/token';
+    private readonly authUrl = `${environment.authDomainUrl}/sso/auth/realms/mts/protocol/openid-connect/token`;
 
     public token = new Subject<string>();
 

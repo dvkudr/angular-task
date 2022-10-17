@@ -15,7 +15,7 @@ export class DisplayTokenComponent implements OnInit {
   ngOnInit(): void {
     this.commonService.token
       .subscribe({
-        next: x => { console.log(`display-token: ${x}`); this.display_token = x }
+        next: x =>  this.display_token = x
       });
   }
 }
