@@ -6,7 +6,6 @@ import { CommmonService } from '../../shared/services/common.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [CommmonService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
       let password = this.loginForm.value.password;
 
       this.commonService.fetchToken(login, password)
-        .subscribe((x) => console.log(x));
+        .subscribe((x) => this.commonService.token.next(x.access_token));
     }
   }
 

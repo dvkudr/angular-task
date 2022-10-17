@@ -7,11 +7,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DisplayTokenComponent } from './pages/display-token/display-token.component';
+import { CommmonService } from './shared/services/common.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DisplayTokenComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [CommmonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
