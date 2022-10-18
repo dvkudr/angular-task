@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisplayTextComponent implements OnInit {
+  @Input() lines: number = 8;
   @Input() text: string = "";
 
   ngOnInit(): void { }
