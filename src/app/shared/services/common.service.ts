@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { Observable, Subject } from "rxjs";
+import { catchError, Observable, Subject, of, throwError } from "rxjs";
 import { environment } from "../../../environments/environment"
 
 @Injectable({
@@ -9,11 +9,13 @@ import { environment } from "../../../environments/environment"
 export class CommmonService {
     private readonly authUrl = `${environment.authDomainUrl}/sso/auth/realms/mts/protocol/openid-connect/token`;
 
-    public token = new Subject<string>();
+    public authToken = new Subject<string>();
+
+    public authError = new Subject<any>();
 
     constructor(private httpClient: HttpClient) {}
 
-    fetchToken(login: string, password: string) : Observable<AuthToken> {
+    fetchToken(login: string, password: string): Observable<AuthToken> {
         let body = new URLSearchParams();
         body.set('grant_type', 'client_credentials');
 
@@ -23,7 +25,8 @@ export class CommmonService {
                 .set('Authorization', 'Basic ' + btoa(login + ':' + password)),
         };
 
-        return this.httpClient.post<AuthToken>(this.authUrl, body.toString(), options);
+        return this.httpClient.post<AuthToken>(this.authUrl, body.toString(), options)
+            .pipe(catchError((err) => throwError(() => new Error(`${err.error.error} (${err.error.error_description})`))));
     }    
 }
 

@@ -30,10 +30,15 @@ export class LoginComponent implements OnInit {
 
       this.commonService.fetchToken(login, password)
         .subscribe({
-          next: (x) => this.commonService.token.next(x.access_token),
-          error: () => this.commonService.token.next("")
+          next: (x) => {
+            this.commonService.authToken.next(x.access_token);
+            this.commonService.authError.next(null);
+          },
+          error: (err) => {
+            this.commonService.authToken.next("");
+            this.commonService.authError.next(err);
+          }
         });
     }
   }
-
 }

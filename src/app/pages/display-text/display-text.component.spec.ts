@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DisplayTokenComponent } from './display-token.component';
+import { DisplayTextComponent } from './display-text.component';
 
-describe('DisplayTokenComponent', () => {
-  let component: DisplayTokenComponent;
-  let fixture: ComponentFixture<DisplayTokenComponent>;
+describe('DisplayTextComponent', () => {
+  let component: DisplayTextComponent;
+  let fixture: ComponentFixture<DisplayTextComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DisplayTokenComponent ]
+      declarations: [ DisplayTextComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DisplayTokenComponent);
+    fixture = TestBed.createComponent(DisplayTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
