@@ -11,9 +11,9 @@ export class AppComponent implements OnInit {
 
   constructor(private commonService: CommmonService) { }
   
-  public authToken: string = "";
+  public authToken = "";
 
-  public authError: string = "";
+  public authError = "";
 
   ngOnInit(): void {
     this.commonService.authToken

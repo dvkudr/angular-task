@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { catchError, Observable, Subject, of, throwError } from "rxjs";
+import { catchError, Observable, Subject, throwError } from "rxjs";
 import { environment } from "../../../environments/environment"
 
 @Injectable({
@@ -16,10 +16,10 @@ export class CommmonService {
     constructor(private httpClient: HttpClient) {}
 
     fetchToken(login: string, password: string): Observable<AuthToken> {
-        let body = new URLSearchParams();
+        const body = new URLSearchParams();
         body.set('grant_type', 'client_credentials');
 
-        let options = {
+        const options = {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
                 .set('Authorization', 'Basic ' + btoa(login + ':' + password)),

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CommmonService } from '../../shared/services/common.service';
 
@@ -8,7 +8,7 @@ import { CommmonService } from '../../shared/services/common.service';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
@@ -20,19 +20,16 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  ngOnInit(): void {
-  }
-
   onSubmit(): void {
     if (this.loginForm.valid) {
-      let login = this.loginForm.value.login;
-      let password = this.loginForm.value.password;
+      const login = this.loginForm.value.login;
+      const password = this.loginForm.value.password;
 
       this.commonService.fetchToken(login, password)
         .subscribe({
           next: (x) => {
             this.commonService.authToken.next(x.access_token);
-            this.commonService.authError.next(null);
+            this.commonService.authError.next(undefined);
           },
           error: (err) => {
             this.commonService.authToken.next("");

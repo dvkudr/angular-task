@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-display-text',
@@ -6,9 +6,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./display-text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DisplayTextComponent implements OnInit {
-  @Input() lines: number = 8;
-  @Input() text: string = "";
-
-  ngOnInit(): void { }
+export class DisplayTextComponent {
+  @Input() lines = 8;
+  @Input() text = "";
 }
