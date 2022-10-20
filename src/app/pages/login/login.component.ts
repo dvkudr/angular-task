@@ -32,11 +32,11 @@ export class LoginComponent implements OnDestroy {
           .subscribe({
             next: (x) => {
               this.commonService.authToken$.next(x.access_token);
-              this.commonService.authError$.next(undefined);
+              this.commonService.authError$.next("");
             },
             error: (err) => {
               this.commonService.authToken$.next("");
-              this.commonService.authError$.next(err);
+              this.commonService.authError$.next(err.message);
             }
           })
       );

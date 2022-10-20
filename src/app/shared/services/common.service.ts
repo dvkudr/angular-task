@@ -11,7 +11,7 @@ export class CommmonService {
 
     public authToken$ = new Subject<string>();
 
-    public authError$ = new Subject<any>();
+    public authError$ = new Subject<string>();
 
     constructor(private httpClient: HttpClient) {}
 
