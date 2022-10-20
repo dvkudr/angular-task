@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CommmonService } from './shared/services/common.service';
 
 @Component({
@@ -6,20 +7,27 @@ import { CommmonService } from './shared/services/common.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'angular-task';
+  public authToken = "";
+  public authError = "";
+  readonly subscription: Subscription = new Subscription();
 
   constructor(private commonService: CommmonService) { }
-  
-  public authToken = "";
-
-  public authError = "";
 
   ngOnInit(): void {
-    this.commonService.authToken
-      .subscribe({ next: x => this.authToken = x });
+    this.subscription.add(
+      this.commonService.authToken$
+        .subscribe({ next: x => this.authToken = x })
+    );
 
-    this.commonService.authError
-      .subscribe({ next: x => this.authError = x });
+    this.subscription.add(
+      this.commonService.authError$
+        .subscribe({ next: x => this.authError = x })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

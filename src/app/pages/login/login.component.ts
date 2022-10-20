@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { CommmonService } from '../../shared/services/common.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { CommmonService } from '../../shared/services/common.service';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+  readonly subscription: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
@@ -25,17 +27,23 @@ export class LoginComponent {
       const login = this.loginForm.value.login;
       const password = this.loginForm.value.password;
 
-      this.commonService.fetchToken(login, password)
-        .subscribe({
-          next: (x) => {
-            this.commonService.authToken.next(x.access_token);
-            this.commonService.authError.next(undefined);
-          },
-          error: (err) => {
-            this.commonService.authToken.next("");
-            this.commonService.authError.next(err);
-          }
-        });
+      this.subscription.add(
+        this.commonService.fetchToken(login, password)
+          .subscribe({
+            next: (x) => {
+              this.commonService.authToken$.next(x.access_token);
+              this.commonService.authError$.next(undefined);
+            },
+            error: (err) => {
+              this.commonService.authToken$.next("");
+              this.commonService.authError$.next(err);
+            }
+          })
+      );
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

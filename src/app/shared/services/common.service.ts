@@ -9,9 +9,9 @@ import { environment } from "../../../environments/environment"
 export class CommmonService {
     private readonly authUrl = `${environment.authDomainUrl}/sso/auth/realms/mts/protocol/openid-connect/token`;
 
-    public authToken = new Subject<string>();
+    public authToken$ = new Subject<string>();
 
-    public authError = new Subject<any>();
+    public authError$ = new Subject<any>();
 
     constructor(private httpClient: HttpClient) {}
 
