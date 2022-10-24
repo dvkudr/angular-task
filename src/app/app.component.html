@@ -1,7 +1,29 @@
+<nav>
+  <ul>
+    <li>
+      <a
+        routerLink="/login"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Login</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/inventory"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Inventory</a
+      >
+    </li>
+  </ul>
+</nav>
 <router-outlet></router-outlet>
+
+<!--
 <div class="card" style="margin:1rem; width: 40rem;">
   <div class="card-body">
-    <div class="card-title">Please login:</div>    
+    <div class="card-title">Please login:</div>
     <app-login></app-login>    
   </div>
 </div>
@@ -17,4 +39,4 @@
     <app-display-text [lines]="1" [text]="authError"></app-display-text>
   </div>
 </div>
-
+-->

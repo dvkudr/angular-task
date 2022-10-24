@@ -5,25 +5,27 @@ import { CommmonService } from './shared/services/common.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'angular-task';
-  public authToken = "";
-  public authError = "";
+  public authToken = '';
+  public authError = '';
   readonly subscription: Subscription = new Subscription();
 
-  constructor(private commonService: CommmonService) { }
+  constructor(private commonService: CommmonService) {}
 
   ngOnInit(): void {
     this.subscription.add(
-      this.commonService.authToken$
-        .subscribe({ next: x => this.authToken = x })
+      this.commonService.authToken$.subscribe({
+        next: x => (this.authToken = x),
+      })
     );
 
     this.subscription.add(
-      this.commonService.authError$
-        .subscribe({ next: x => this.authError = x })
+      this.commonService.authError$.subscribe({
+        next: x => (this.authError = x),
+      })
     );
   }
 
@@ -31,3 +33,4 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 }
+

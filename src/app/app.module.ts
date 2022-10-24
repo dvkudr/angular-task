@@ -9,12 +9,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayTextComponent } from './pages/display-text/display-text.component';
 import { CommmonService } from './shared/services/common.service';
+import { InventoryComponent } from './pages/inventory/inventory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DisplayTextComponent
+    DisplayTextComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
