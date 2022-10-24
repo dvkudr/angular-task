@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DisplayTextComponent } from './pages/display-text/display-text.component';
 import { CommonService } from './shared/services/common.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { InventoryComponent } from './pages/inventory/inventory.component';
     ReactiveFormsModule,
     NgbModule,
   ],
-  providers: [CommonService],
+  providers: [CommonService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
