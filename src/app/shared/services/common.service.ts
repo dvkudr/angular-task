@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import { HttpClient, HttpHeaders } from "@angular/common/http"
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http"
 import { catchError, Observable, Subject, throwError } from "rxjs";
 import { environment } from "../../../environments/environment"
 
@@ -26,7 +26,7 @@ export class CommmonService {
         };
 
         return this.httpClient.post<AuthToken>(this.authUrl, body.toString(), options)
-            .pipe(catchError((err) => throwError(() => new Error(`${err.error.error} (${err.error.error_description})`))));
+            .pipe(catchError((err: HttpErrorResponse) => throwError(() => new Error(`${err.error.error} (${err.error.error_description})`))));
     }    
 }
 
