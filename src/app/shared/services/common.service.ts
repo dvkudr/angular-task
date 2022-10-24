@@ -4,16 +4,22 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { catchError, Observable, Subject, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  Subject,
+  throwError,
+} from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CommmonService {
+export class CommonService {
   private readonly authUrl = `${environment.authDomainUrl}/sso/auth/realms/mts/protocol/openid-connect/token`;
 
-  public authToken$ = new Subject<string>();
+  public authToken$ = new BehaviorSubject<string>('');
 
   public authError$ = new Subject<string>();
 

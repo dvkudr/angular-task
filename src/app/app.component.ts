@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CommmonService } from './shared/services/common.service';
+import { CommonService } from './shared/services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public authError = '';
   readonly subscription: Subscription = new Subscription();
 
-  constructor(private commonService: CommmonService) {}
+  constructor(private commonService: CommonService) {}
 
   ngOnInit(): void {
     this.subscription.add(

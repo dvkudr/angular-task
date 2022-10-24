@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayTextComponent } from './pages/display-text/display-text.component';
-import { CommmonService } from './shared/services/common.service';
+import { CommonService } from './shared/services/common.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 
 @NgModule({
@@ -16,16 +16,16 @@ import { InventoryComponent } from './pages/inventory/inventory.component';
     AppComponent,
     LoginComponent,
     DisplayTextComponent,
-    InventoryComponent
+    InventoryComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
-  providers: [CommmonService],
-  bootstrap: [AppComponent]
+  providers: [CommonService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
