@@ -11,6 +11,7 @@ import { DisplayTextComponent } from './pages/display-text/display-text.componen
 import { CommonService } from './shared/services/common.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { AuthService } from './auth/auth.service';
+import { ParameterSelectorComponent } from './pages/inventory/parameter-selector/parameter-selector/parameter-selector.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AuthService } from './auth/auth.service';
     LoginComponent,
     DisplayTextComponent,
     InventoryComponent,
+    ParameterSelectorComponent,
   ],
   imports: [
     BrowserModule,
