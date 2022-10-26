@@ -4,5 +4,6 @@ export const environment: EnvironmentInterface = {
   production: false,
   authDomainUrl: 'http://kong.fte3.10.97.145.65.nip.io',
   inventoryDomainUrl: 'http://kong.fte3.10.97.145.65.nip.io',
+  userName: 'admsk\\dvkudryavt',
 };
 

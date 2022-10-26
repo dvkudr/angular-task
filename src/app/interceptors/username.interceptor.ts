@@ -7,9 +7,10 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class TokenInterceptor implements HttpInterceptor {
+export class UserNameInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(
@@ -19,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (this.authService.isAuthenticated()) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.authService.getToken()}`,
+          'x-user-name': environment.userName,
         },
       });
     }

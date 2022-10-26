@@ -29,7 +29,6 @@ export class InventoryComponent implements OnDestroy {
       const pageSize: number = this.inventoryForm.value.pageSize;
       const stock: number = this.inventoryForm.value.stock;
       const code: string = this.inventoryForm.value.code;
-      console.log(`${type} ${pageSize} ${stock} ${code}`);
 
       this.subscription.add(
         this.inventryService
