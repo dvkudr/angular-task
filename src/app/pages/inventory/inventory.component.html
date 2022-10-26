@@ -6,8 +6,7 @@
         [formGroup]="inventoryForm"
         (ngSubmit)="onSubmit()"
       >
-        <app-parameter-selector>
-          <label for="inputType" class="control-label">Type</label>
+        <app-parameter-selector labelInputId="inputType" labelText="Type">
           <div>
             <input
               class="form-control"
@@ -21,8 +20,10 @@
             />
           </div>
         </app-parameter-selector>
-        <app-parameter-selector>
-          <label for="inputPageSize" class="control-label">Page Size</label>
+        <app-parameter-selector
+          labelInputId="inputPageSize"
+          labelText="Page Size"
+        >
           <div>
             <input
               class="form-control"
@@ -36,8 +37,7 @@
             />
           </div>
         </app-parameter-selector>
-        <app-parameter-selector>
-          <label for="inputStock" class="control-label">Stock</label>
+        <app-parameter-selector labelInputId="inputStock" labelText="Stock">
           <div>
             <input
               class="form-control"
@@ -51,8 +51,7 @@
             />
           </div>
         </app-parameter-selector>
-        <app-parameter-selector>
-          <label for="inputCode" class="control-label">Code</label>
+        <app-parameter-selector labelInputId="inputCode" labelText="Code">
           <div>
             <input
               class="form-control"
