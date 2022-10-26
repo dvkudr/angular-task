@@ -12,6 +12,8 @@ import { CommonService } from './shared/services/common.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { AuthService } from './auth/auth.service';
 import { ParameterSelectorComponent } from './pages/inventory/parameter-selector/parameter-selector/parameter-selector.component';
+import { httpInterceptorProviders } from './interceptors/interceptor.index';
+import { InventoryService } from './inventory/inventory.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,12 @@ import { ParameterSelectorComponent } from './pages/inventory/parameter-selector
     ReactiveFormsModule,
     NgbModule,
   ],
-  providers: [CommonService, AuthService],
+  providers: [
+    CommonService,
+    AuthService,
+    InventoryService,
+    ...httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

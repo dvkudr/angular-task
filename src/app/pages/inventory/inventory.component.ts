@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { InventoryService } from 'src/app/inventory/inventory.service';
 
 @Component({
   selector: 'app-inventory',
@@ -10,7 +11,10 @@ import { Subscription } from 'rxjs';
 export class InventoryComponent implements OnDestroy {
   readonly subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private inventryService: InventoryService
+  ) {}
 
   inventoryForm: FormGroup = this.fb.group({
     type: new FormControl('2'),
@@ -21,11 +25,17 @@ export class InventoryComponent implements OnDestroy {
 
   onSubmit(): void {
     if (this.inventoryForm.valid) {
-      const type = this.inventoryForm.value.type;
-      const pageSize = this.inventoryForm.value.pageSize;
-      const stock = this.inventoryForm.value.stock;
-      const code = this.inventoryForm.value.code;
+      const type: number = this.inventoryForm.value.type;
+      const pageSize: number = this.inventoryForm.value.pageSize;
+      const stock: number = this.inventoryForm.value.stock;
+      const code: string = this.inventoryForm.value.code;
       console.log(`${type} ${pageSize} ${stock} ${code}`);
+
+      this.subscription.add(
+        this.inventryService
+          .fetchInventory(type, pageSize, stock, code)
+          .subscribe(x => console.log(x))
+      );
     }
   }
 

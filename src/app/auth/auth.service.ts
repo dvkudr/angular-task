@@ -23,6 +23,10 @@ export class AuthService implements OnDestroy {
     return this.AuthToken as unknown as boolean;
   }
 
+  public getToken(): string {
+    return this.AuthToken;
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
