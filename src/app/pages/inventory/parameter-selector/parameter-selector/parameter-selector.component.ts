@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./parameter-selector.component.scss'],
 })
 export class ParameterSelectorComponent {
-  @Input() labelInputId = '';
+  @Input() controlId = '';
   @Input() labelText = '';
 }
 
