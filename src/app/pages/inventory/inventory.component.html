@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-1 vh-100" style="min-width: 200px; background: lavender">
+    <div class="col-1 vh-100" style="width: 15%; background: lavender">
       <form
         class="form-horizontal"
         [formGroup]="inventoryForm"
@@ -71,7 +71,7 @@
         </div>
       </form>
     </div>
-    <div class="col" style="background-color: beige">
+    <div class="col" style="width: 85%; background-color: beige">
       <ngx-json-viewer
         [json]="inventoryJson"
         [expanded]="false"
@@ -79,4 +79,3 @@
     </div>
   </div>
 </div>
-
