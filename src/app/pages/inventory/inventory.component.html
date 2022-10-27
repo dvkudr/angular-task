@@ -67,7 +67,12 @@
         </div>
       </form>
     </div>
-    <div class="col" style="background-color: greenyellow">Column</div>
+    <div class="col" style="background-color: greenyellow">
+      <ngx-json-viewer
+        [json]="inventoryJson"
+        [expanded]="false"
+      ></ngx-json-viewer>
+    </div>
   </div>
 </div>
 

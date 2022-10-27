@@ -10,6 +10,7 @@ import { InventoryService } from 'src/app/inventory/inventory.service';
 })
 export class InventoryComponent implements OnDestroy {
   readonly subscription: Subscription = new Subscription();
+  public inventoryJson = '';
 
   constructor(
     private fb: FormBuilder,
@@ -33,7 +34,7 @@ export class InventoryComponent implements OnDestroy {
       this.subscription.add(
         this.inventryService
           .fetchInventory(type, pageSize, stock, code)
-          .subscribe(x => console.log(x))
+          .subscribe(x => (this.inventoryJson = x as string))
       );
     }
   }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { InventoryService } from './inventory/inventory.service';
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxJsonViewerModule,
   ],
   providers: [
     CommonService,
