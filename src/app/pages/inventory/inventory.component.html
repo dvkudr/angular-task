@@ -73,7 +73,7 @@
     </div>
     <div class="col" style="width: 85%; background-color: beige">
       <ngx-json-viewer
-        [json]="inventoryJson"
+        [json]="inventoryJson$ | async"
         [expanded]="false"
       ></ngx-json-viewer>
     </div>

@@ -1,16 +1,17 @@
-import { Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { InventoryService } from 'src/app/inventory/inventory.service';
 
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent implements OnDestroy {
   readonly subscription: Subscription = new Subscription();
-  public inventoryJson: unknown = [];
+  public inventoryJson$ = new BehaviorSubject<unknown>([]);
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +35,7 @@ export class InventoryComponent implements OnDestroy {
       this.subscription.add(
         this.inventryService
           .fetchInventory(type, pageSize, stock, code)
-          .subscribe(x => (this.inventoryJson = x))
+          .subscribe(x => this.inventoryJson$.next(x))
       );
     }
   }
@@ -43,4 +44,3 @@ export class InventoryComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
 }
-
