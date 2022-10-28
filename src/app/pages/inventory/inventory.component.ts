@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { InventoryService } from 'src/app/inventory/inventory.service';
 
 @Component({
@@ -31,9 +31,12 @@ export class InventoryComponent {
       const stock: number = this.inventoryForm.value.stock;
       const code: string = this.inventoryForm.value.code;
 
-      this.inventoryJson$ = this.inventryService
-        .fetchInventory(type, pageSize, stock, code)
-        .pipe(take(1));
+      this.inventoryJson$ = this.inventryService.fetchInventory(
+        type,
+        pageSize,
+        stock,
+        code
+      );
     }
   }
 }
