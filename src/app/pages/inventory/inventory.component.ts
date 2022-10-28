@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { InventoryService } from 'src/app/inventory/inventory.service';
 
 @Component({
@@ -9,9 +9,8 @@ import { InventoryService } from 'src/app/inventory/inventory.service';
   styleUrls: ['./inventory.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InventoryComponent implements OnDestroy {
-  readonly subscription: Subscription = new Subscription();
-  public inventoryJson$ = new BehaviorSubject<unknown>([]);
+export class InventoryComponent {
+  @Input() public inventoryJson$ = new Observable<unknown>();
 
   constructor(
     private fb: FormBuilder,
@@ -32,15 +31,9 @@ export class InventoryComponent implements OnDestroy {
       const stock: number = this.inventoryForm.value.stock;
       const code: string = this.inventoryForm.value.code;
 
-      this.subscription.add(
-        this.inventryService
-          .fetchInventory(type, pageSize, stock, code)
-          .subscribe(x => this.inventoryJson$.next(x))
-      );
+      this.inventoryJson$ = this.inventryService
+        .fetchInventory(type, pageSize, stock, code)
+        .pipe(take(1));
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
