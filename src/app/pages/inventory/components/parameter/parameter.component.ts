@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-parameter-selector',
-  templateUrl: './parameter-selector.component.html',
-  styleUrls: ['./parameter-selector.component.scss'],
+  selector: 'app-parameter',
+  templateUrl: './parameter.component.html',
+  styleUrls: ['./parameter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ParameterSelectorComponent {
+export class ParameterComponent {
   @Input() controlId = '';
   @Input() labelText = '';
 }

@@ -6,7 +6,7 @@
         [formGroup]="inventoryForm"
         (ngSubmit)="onSubmit()"
       >
-        <app-parameter-selector controlId="inputType" labelText="Type">
+        <app-parameter controlId="inputType" labelText="Type">
           <div>
             <input
               class="form-control"
@@ -20,8 +20,8 @@
               style="background-color: inherit"
             />
           </div>
-        </app-parameter-selector>
-        <app-parameter-selector controlId="inputPageSize" labelText="Page Size">
+        </app-parameter>
+        <app-parameter controlId="inputPageSize" labelText="Page Size">
           <div>
             <input
               class="form-control"
@@ -35,8 +35,8 @@
               style="background-color: inherit"
             />
           </div>
-        </app-parameter-selector>
-        <app-parameter-selector controlId="inputStock" labelText="Stock">
+        </app-parameter>
+        <app-parameter controlId="inputStock" labelText="Stock">
           <div>
             <input
               class="form-control"
@@ -50,8 +50,8 @@
               style="background-color: inherit"
             />
           </div>
-        </app-parameter-selector>
-        <app-parameter-selector controlId="inputCode" labelText="Code">
+        </app-parameter>
+        <app-parameter controlId="inputCode" labelText="Code">
           <div>
             <input
               class="form-control"
@@ -63,7 +63,7 @@
               style="background-color: inherit"
             />
           </div>
-        </app-parameter-selector>
+        </app-parameter>
         <div class="form-group" style="margin-top: 2rem">
           <div class="col-sm-10">
             <button class="btn btn-default" type="submit">Request</button>

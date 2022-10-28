@@ -11,8 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DisplayTextComponent } from './pages/display-text/display-text.component';
 import { CommonService } from './shared/services/common.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
+import { ParameterComponent } from './pages/inventory/components/parameter/parameter.component';
 import { AuthService } from './auth/auth.service';
-import { ParameterSelectorComponent } from './pages/inventory/parameter-selector/parameter-selector/parameter-selector.component';
 import { httpInterceptorProviders } from './interceptors/interceptor.index';
 import { InventoryService } from './inventory/inventory.service';
 
@@ -22,7 +22,7 @@ import { InventoryService } from './inventory/inventory.service';
     LoginComponent,
     DisplayTextComponent,
     InventoryComponent,
-    ParameterSelectorComponent,
+    ParameterComponent,
   ],
   imports: [
     BrowserModule,
