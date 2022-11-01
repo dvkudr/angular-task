@@ -15,6 +15,9 @@ import { ParameterComponent } from './pages/inventory/components/parameter/param
 import { AuthService } from './auth/auth.service';
 import { httpInterceptorProviders } from './interceptors/interceptor.index';
 import { InventoryService } from './inventory/inventory.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { InventoryService } from './inventory/inventory.service';
     ReactiveFormsModule,
     NgbModule,
     NgxJsonViewerModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [
     CommonService,
