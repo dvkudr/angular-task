@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { CommonActions } from 'src/app/store/common/actions/common.action';
 import { CommonService } from '../../shared/services/common.service';
 
 @Component({
@@ -16,8 +18,9 @@ export class LoginComponent implements OnDestroy {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private store: Store,
     private commonService: CommonService
-  ) {}
+  ) { }
 
   loginForm: FormGroup = this.fb.group({
     login: new FormControl(''),
@@ -26,6 +29,17 @@ export class LoginComponent implements OnDestroy {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.store.dispatch(
+        CommonActions.getToken({
+          payload: {
+            login: this.loginForm.value.login || '',
+            password: this.loginForm.value.password || ''
+          },
+        })
+      );
+
+
+      // to be removed
       const login = this.loginForm.value.login;
       const password = this.loginForm.value.password;
 
@@ -42,6 +56,9 @@ export class LoginComponent implements OnDestroy {
           },
         })
       );
+      // to be removed
+
+
     }
   }
 
