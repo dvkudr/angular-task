@@ -8,10 +8,12 @@ export const commonReducers = createReducer(
     on(CommonActions.getTokenSuccess, (state: CommonState, { payload }): CommonState => ({
         ...state,
         token: payload.token,
+        error: ''
     })),
 
     on(CommonActions.getTokenError, (state: CommonState, { payload }): CommonState => ({
         ...state,
+        token: '',
         error: payload.error,
     }))
 );

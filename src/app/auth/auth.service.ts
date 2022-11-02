@@ -1,5 +1,4 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommonService } from '../shared/services/common.service';
 
@@ -11,7 +10,7 @@ export class AuthService implements OnDestroy {
 
   private AuthToken = '';
 
-  constructor(private commonService: CommonService, private router: Router) {
+  constructor(private commonService: CommonService) {
     this.subscription.add(
       commonService.authToken$.subscribe(x => {
         this.AuthToken = x;
