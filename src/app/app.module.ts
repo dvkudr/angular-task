@@ -18,6 +18,7 @@ import { InventoryService } from './inventory/inventory.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CommonEffects } from './store/common/effects/common.effects';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     NgbModule,
     NgxJsonViewerModule,
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([CommonEffects]),
     StoreRouterConnectingModule.forRoot(),
   ],
   providers: [
@@ -46,4 +47,4 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
