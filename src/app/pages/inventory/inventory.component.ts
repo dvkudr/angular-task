@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { concat, Observable, of } from 'rxjs';
-import { InventoryService } from 'src/app/inventory/inventory.service';
+import { InventoryService } from '../../inventory/inventory.service';
+import { InventoryRequest } from '../../shared/services/models/inventory.request';
 
 @Component({
   selector: 'app-inventory',
@@ -26,14 +27,19 @@ export class InventoryComponent {
 
   onSubmit(): void {
     if (this.inventoryForm.valid) {
-      const type: number = this.inventoryForm.value.type;
-      const pageSize: number = this.inventoryForm.value.pageSize;
-      const stock: number = this.inventoryForm.value.stock;
-      const code: string = this.inventoryForm.value.code;
+      const request: InventoryRequest = {
+        type: this.inventoryForm.value.type,
+        location: 'MR_CENTER',
+        pageNum: 1,
+        pageSize: this.inventoryForm.value.pageSize,
+        status: 'available',
+        stock: this.inventoryForm.value.stock,
+        code: this.inventoryForm.value.code
+      };
 
       this.inventoryJson$ = concat(
         of({}),
-        this.inventryService.fetchInventory(type, pageSize, stock, code));
+        this.inventryService.fetchInventory(request));
     }
   }
 }
