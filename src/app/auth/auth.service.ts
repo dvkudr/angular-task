@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { CommonService } from '../shared/services/common.service';
+import { commonSelectors } from '../store/common/selectors/common.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +11,12 @@ export class AuthService implements OnDestroy {
 
   private AuthToken = '';
 
-  constructor(private commonService: CommonService) {
+  constructor(private store: Store) {
     this.subscription.add(
-      commonService.authToken$.subscribe(x => {
-        this.AuthToken = x;
-      })
-    );
+      this.store
+        .select(commonSelectors.token)
+        .pipe()
+        .subscribe(token => this.AuthToken = token));
   }
 
   public isAuthenticated() {

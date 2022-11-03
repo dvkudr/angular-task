@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CommonActions } from 'src/app/store/common/actions/common.action';
-import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +14,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store,
-    private commonService: CommonService
+    private store: Store
   ) { }
 
   loginForm: FormGroup = this.fb.group({

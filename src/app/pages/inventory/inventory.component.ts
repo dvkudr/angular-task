@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { InventoryService } from 'src/app/inventory/inventory.service';
 
@@ -16,8 +14,6 @@ export class InventoryComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
-    private store: Store,
     private inventryService: InventoryService
   ) { }
 
@@ -30,14 +26,6 @@ export class InventoryComponent {
 
   onSubmit(): void {
     if (this.inventoryForm.valid) {
-      /*
-      this.store
-        .select(commonSelectors.token)
-        .pipe(take(1))
-        .subscribe(token => {          
-        });
-        */
-
       const type: number = this.inventoryForm.value.type;
       const pageSize: number = this.inventoryForm.value.pageSize;
       const stock: number = this.inventoryForm.value.stock;
