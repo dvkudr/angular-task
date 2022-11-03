@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { concat, Observable, of } from 'rxjs';
 import { InventoryService } from 'src/app/inventory/inventory.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { InventoryService } from 'src/app/inventory/inventory.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent {
-  @Input() public inventoryJson$: Observable<unknown> = new BehaviorSubject<unknown>({});
+  @Input() public inventoryJson$: Observable<unknown> = of({});
 
   constructor(
     private fb: FormBuilder,
@@ -31,12 +31,9 @@ export class InventoryComponent {
       const stock: number = this.inventoryForm.value.stock;
       const code: string = this.inventoryForm.value.code;
 
-      this.inventoryJson$ = this.inventryService.fetchInventory(
-        type,
-        pageSize,
-        stock,
-        code
-      );
+      this.inventoryJson$ = concat(
+        of({}),
+        this.inventryService.fetchInventory(type, pageSize, stock, code));
     }
   }
 }

@@ -24,7 +24,11 @@ export class CommonEffects {
 
                 return CommonActions.getTokenSuccess({ payload: { token: result.access_token } });
             }),
-            catchError((error) => of(CommonActions.getTokenError({ payload: { error: error.message } })))
+            catchError((error) => {
+                localStorage.setItem('token', '');
+
+                return of(CommonActions.getTokenError({ payload: { error: error.message } }))
+            })
         )
     })
 }
