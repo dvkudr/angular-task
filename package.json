@@ -24,6 +24,7 @@
     "@ngrx/entity": "^14.3.2",
     "@ngrx/router-store": "^14.3.2",
     "@ngrx/store": "^14.3.2",
+    "@ngrx/store-devtools": "^14.3.2",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "ngx-json-viewer": "^3.2.1-alpha.0",
