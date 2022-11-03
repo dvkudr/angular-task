@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { InventoryService } from 'src/app/inventory/inventory.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { InventoryService } from 'src/app/inventory/inventory.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent {
-  @Input() public inventoryJson$ = new Observable<unknown>();
+  @Input() public inventoryJson$: Observable<unknown> = new BehaviorSubject<unknown>({});
 
   constructor(
     private fb: FormBuilder,

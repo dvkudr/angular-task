@@ -10,13 +10,13 @@ import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (this.authService.isAuthenticated()) {
+    if (!req.url.includes("openid-connect/token") && this.authService.isAuthenticated()) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.authService.getToken()}`,
