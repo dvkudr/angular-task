@@ -23,6 +23,9 @@ import { httpInterceptorProviders } from './interceptors/interceptor.index';
 import { CommonEffects } from './store/common/effects/common.effects';
 import { commonFeature } from './store/common/common.state';
 import { commonReducers } from './store/common/reducers/common.reducers';
+import { InventoryEffects } from './store/inventory/effects/inventory.effects';
+import { inventoryFeature } from './store/inventory/inventory.state';
+import { inventoryReducers } from './store/inventory/reducers/inventory.reducers';
 
 
 @NgModule({
@@ -42,7 +45,8 @@ import { commonReducers } from './store/common/reducers/common.reducers';
     NgxJsonViewerModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(commonFeature, commonReducers),
-    EffectsModule.forRoot([CommonEffects]),
+    StoreModule.forFeature(inventoryFeature, inventoryReducers),
+    EffectsModule.forRoot([CommonEffects, InventoryEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,

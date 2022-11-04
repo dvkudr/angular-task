@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { InventoryRequest } from '../shared/services/models/inventory.request';
+import { InventoryModel } from '../store/inventory/models/inventory.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { InventoryRequest } from '../shared/services/models/inventory.request';
 export class InventoryService {
   constructor(private httpClient: HttpClient) { }
 
-  fetchInventory(request: InventoryRequest): Observable<unknown> {
+  fetchInventory(request: InventoryRequest): Observable<InventoryModel[]> {
     let requestPath = '/auth/resource/inventory/item';
     requestPath += `?code=${request.code}`;
     requestPath += `&location=${request.location}`;
@@ -23,7 +24,7 @@ export class InventoryService {
     const inventoryUrl = environment.inventoryDomainUrl + requestPath;
 
     return this.httpClient
-      .get<unknown>(inventoryUrl)
+      .get<InventoryModel[]>(inventoryUrl)
       .pipe(
         catchError((err: HttpErrorResponse) =>
           throwError(
