@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { concat, Observable, of } from 'rxjs';
-import { InventoryService } from '../../inventory/inventory.service';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { InventoryActions } from 'src/app/store/inventory/actions/inventory.action';
+import { inventorySelectors } from 'src/app/store/inventory/selectors/inventory.selectors';
 import { InventoryRequest } from '../../shared/services/models/inventory.request';
 
 @Component({
@@ -10,13 +12,21 @@ import { InventoryRequest } from '../../shared/services/models/inventory.request
   styleUrls: ['./inventory.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InventoryComponent {
-  @Input() public inventoryJson$: Observable<unknown> = of({});
+export class InventoryComponent implements OnDestroy {
+  @Input() public inventory: unknown = {};
+
+  readonly subscription: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
-    private inventryService: InventoryService
-  ) { }
+    private store: Store,
+  ) {
+    this.subscription.add(
+      this.store
+        .select(inventorySelectors.inventory)
+        .pipe()
+        .subscribe(inventory => this.inventory = inventory));
+  }
 
   inventoryForm: FormGroup = this.fb.group({
     type: new FormControl('2'),
@@ -38,9 +48,17 @@ export class InventoryComponent {
         include: ['account', 'model', 'service']
       };
 
-      this.inventoryJson$ = concat(
-        of({}),
-        this.inventryService.fetchInventory(request));
+      this.store.dispatch(
+        InventoryActions.getInventory({
+          payload: {
+            request: request
+          },
+        })
+      );
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

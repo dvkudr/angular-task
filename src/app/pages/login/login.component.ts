@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CommonActions } from 'src/app/store/common/actions/common.action';
 
@@ -13,7 +12,6 @@ import { CommonActions } from 'src/app/store/common/actions/common.action';
 export class LoginComponent {
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private store: Store
   ) { }
 
