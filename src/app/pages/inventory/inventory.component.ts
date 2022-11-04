@@ -34,7 +34,8 @@ export class InventoryComponent {
         pageSize: this.inventoryForm.value.pageSize,
         status: 'available',
         stock: this.inventoryForm.value.stock,
-        code: this.inventoryForm.value.code
+        code: this.inventoryForm.value.code,
+        include: ['account', 'model', 'service']
       };
 
       this.inventoryJson$ = concat(

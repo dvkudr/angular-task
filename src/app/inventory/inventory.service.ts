@@ -18,7 +18,7 @@ export class InventoryService {
     requestPath += `&pagesize=${request.pageSize}`;
     requestPath += `&status=${request.status}`;
     requestPath += `&stock=${request.stock}`;
-    requestPath += '&include=account&include=model&include=service';
+    requestPath += request.include.reduce((p, c) => p += `&include=${c}`, '');
 
     const inventoryUrl = environment.inventoryDomainUrl + requestPath;
 
