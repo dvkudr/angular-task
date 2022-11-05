@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { commonSelectors } from '../store/common/selectors/common.selectors';
+import { commonSelectors } from '../../store/common/selectors/common.selectors';
 
 @Injectable({
   providedIn: 'root',

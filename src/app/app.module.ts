@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CommonService } from './shared/services/common.service';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './shared/services/auth.service';
 import { InventoryService } from './inventory/inventory.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { DisplayTextComponent } from './pages/display-text/display-text.component';
@@ -26,7 +26,6 @@ import { commonReducers } from './store/common/reducers/common.reducers';
 import { InventoryEffects } from './store/inventory/effects/inventory.effects';
 import { inventoryFeature } from './store/inventory/inventory.state';
 import { inventoryReducers } from './store/inventory/reducers/inventory.reducers';
-
 
 @NgModule({
   declarations: [
@@ -50,9 +49,9 @@ import { inventoryReducers } from './store/inventory/reducers/inventory.reducers
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
-      name: "inventory-app",
+      name: 'inventory-app',
       maxAge: 20,
-    })
+    }),
   ],
   providers: [
     CommonService,
@@ -62,4 +61,4 @@ import { inventoryReducers } from './store/inventory/reducers/inventory.reducers
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

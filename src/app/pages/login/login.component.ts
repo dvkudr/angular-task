@@ -10,10 +10,7 @@ import { CommonActions } from 'src/app/store/common/actions/common.action';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  constructor(
-    private fb: FormBuilder,
-    private store: Store
-  ) { }
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   loginForm: FormGroup = this.fb.group({
     login: new FormControl(''),
@@ -26,11 +23,10 @@ export class LoginComponent {
         CommonActions.getToken({
           payload: {
             login: this.loginForm.value.login || '',
-            password: this.loginForm.value.password || ''
+            password: this.loginForm.value.password || '',
           },
         })
       );
     }
   }
 }
-

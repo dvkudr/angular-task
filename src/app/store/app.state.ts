@@ -1,5 +1,5 @@
-import { CommonState } from './common/common.state'
+import { CommonState } from './common/common.state';
 
 export interface AppState {
-    common: CommonState
+  common: CommonState;
 }

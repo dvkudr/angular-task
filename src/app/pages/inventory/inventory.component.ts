@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy,
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -17,15 +22,13 @@ export class InventoryComponent implements OnDestroy {
 
   readonly subscription: Subscription = new Subscription();
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store,
-  ) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.subscription.add(
       this.store
         .select(inventorySelectors.inventory)
         .pipe()
-        .subscribe(inventory => this.inventory = inventory));
+        .subscribe(inventory => (this.inventory = inventory))
+    );
   }
 
   inventoryForm: FormGroup = this.fb.group({
@@ -45,13 +48,13 @@ export class InventoryComponent implements OnDestroy {
         status: 'available',
         stock: this.inventoryForm.value.stock,
         code: this.inventoryForm.value.code,
-        include: ['account', 'model', 'service']
+        include: ['account', 'model', 'service'],
       };
 
       this.store.dispatch(
         InventoryActions.getInventory({
           payload: {
-            request: request
+            request: request,
           },
         })
       );
