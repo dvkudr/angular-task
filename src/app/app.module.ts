@@ -17,7 +17,6 @@ import { CommonService } from './shared/services/common.service';
 import { AuthService } from './shared/services/auth.service';
 import { InventoryService } from './inventory/inventory.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
-import { DisplayTextComponent } from './pages/display-text/display-text.component';
 import { ParameterComponent } from './pages/inventory/components/parameter/parameter.component';
 import { httpInterceptorProviders } from './interceptors/interceptor.index';
 import { CommonEffects } from './store/common/effects/common.effects';
@@ -31,7 +30,6 @@ import { inventoryReducers } from './store/inventory/reducers/inventory.reducers
   declarations: [
     AppComponent,
     LoginComponent,
-    DisplayTextComponent,
     InventoryComponent,
     ParameterComponent,
   ],
@@ -61,4 +59,4 @@ import { inventoryReducers } from './store/inventory/reducers/inventory.reducers
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
