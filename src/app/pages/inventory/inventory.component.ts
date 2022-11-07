@@ -1,8 +1,10 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Input,
   OnDestroy,
+  ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -10,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { InventoryActions } from 'src/app/store/inventory/actions/inventory.action';
 import { inventorySelectors } from 'src/app/store/inventory/selectors/inventory.selectors';
 import { InventoryRequest } from '../../shared/services/models/inventory.request';
+import { InventoryListComponent } from './components/inventory-list/inventory-list.component';
 
 @Component({
   selector: 'app-inventory',
@@ -17,17 +20,21 @@ import { InventoryRequest } from '../../shared/services/models/inventory.request
   styleUrls: ['./inventory.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InventoryComponent implements OnDestroy {
+export class InventoryComponent implements AfterViewInit, OnDestroy {
   @Input() public inventory: unknown = {};
+
+  @ViewChild('inventoryList') inventoryComponent!: InventoryListComponent;
 
   readonly subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder, private store: Store) { }
+
+  ngAfterViewInit(): void {
     this.subscription.add(
       this.store
         .select(inventorySelectors.inventory)
         .pipe()
-        .subscribe(inventory => (this.inventory = inventory))
+        .subscribe(x => (this.inventoryComponent.inventoryList$.next(x)))
     );
   }
 

@@ -25,6 +25,7 @@ import { commonReducers } from './store/common/reducers/common.reducers';
 import { InventoryEffects } from './store/inventory/effects/inventory.effects';
 import { inventoryFeature } from './store/inventory/inventory.state';
 import { inventoryReducers } from './store/inventory/reducers/inventory.reducers';
+import { InventoryListComponent } from './pages/inventory/components/inventory-list/inventory-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { inventoryReducers } from './store/inventory/reducers/inventory.reducers
     LoginComponent,
     InventoryComponent,
     ParameterComponent,
+    InventoryListComponent,
   ],
   imports: [
     BrowserModule,
