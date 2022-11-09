@@ -1,8 +1,8 @@
 import { EnvironmentInterface } from './environment-interface';
 
 export const environment: EnvironmentInterface = {
-  production: true,
-  authDomainUrl: 'http://kong.fte3.10.97.145.65.nip.io',
-  inventoryDomainUrl: 'http://kong.fte3.10.97.145.65.nip.io',
+  production: false,
+  authDomainUrl: 'http://localhost:8080',
+  inventoryDomainUrl: 'http://localhost:8080',
   userName: 'admsk\\dvkudryavt',
 };

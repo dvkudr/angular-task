@@ -6,4 +6,3 @@ export const environment: EnvironmentInterface = {
   inventoryDomainUrl: 'http://kong.fte3.10.97.145.65.nip.io',
   userName: 'admsk\\dvkudryavt',
 };
-
