@@ -14,9 +14,7 @@ export const inventoryReducers = createReducer(
 
   on(
     InventoryActions.getInventoryError,
-    (state, { payload }): InventoryState => ({
-      ...state,
-      error: payload.error,
-    })
+    (state, { payload }): InventoryState =>
+      inventoryAdapter.setAll([], { ...state, error: payload.error })
   )
 );

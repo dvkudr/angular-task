@@ -9,5 +9,5 @@ import { InventoryModel } from 'src/app/store/inventory/models/inventory.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryListComponent {
-  @Input() public inventoryList$ = new BehaviorSubject<InventoryModel[]>([]);
+  @Input() public inventoryList$: BehaviorSubject<InventoryModel[]> = new BehaviorSubject<InventoryModel[]>([]);
 }

@@ -15,11 +15,7 @@ export class InventoryEffects {
   fetchInventory$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(InventoryActions.getInventory),
-      switchMap(({ payload }) => {
-        console.log(payload);
-        return this.inventoryService.fetchInventory(payload.request)
-      }
-      ),
+      switchMap(({ payload }) => this.inventoryService.fetchInventory(payload.request)),
       map((result: InventoryModel[]) =>
         InventoryActions.getInventorySuccess({ payload: { model: result } })
       ),
