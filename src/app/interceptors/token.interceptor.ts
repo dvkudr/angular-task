@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
       .pipe<HttpEvent<unknown>>(
         catchError((error: HttpErrorResponse) => {
           if (error.status == 401) {
-            localStorage.setItem('token', '');
+            this.authService.setToken('');
             this.router.navigateByUrl('/login');
           }
 

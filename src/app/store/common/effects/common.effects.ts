@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import {
   AuthToken,
   CommonService,
@@ -13,8 +14,9 @@ export class CommonEffects {
   constructor(
     private actions$: Actions,
     private router: Router,
-    private commonService: CommonService
-  ) {}
+    private commonService: CommonService,
+    private authService: AuthService
+  ) { }
 
   fetchToken$ = createEffect(() => {
     return this.actions$.pipe(
@@ -23,7 +25,7 @@ export class CommonEffects {
         this.commonService.fetchToken(payload.login, payload.password)
       ),
       map((result: AuthToken) => {
-        localStorage.setItem('token', result.access_token);
+        this.authService.setToken(result.access_token);
 
         this.router.navigateByUrl('/inventory');
 
@@ -32,7 +34,7 @@ export class CommonEffects {
         });
       }),
       catchError(error => {
-        localStorage.setItem('token', '');
+        this.authService.setToken('');
 
         return of(
           CommonActions.getTokenError({ payload: { error: error.message } })

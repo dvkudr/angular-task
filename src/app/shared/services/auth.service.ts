@@ -5,12 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  public isAuthenticated() {
-    return this.getToken();
+  public isAuthenticated(): boolean {
+    return this.getToken() as unknown as boolean;
   }
 
   public getToken(): string {
     const token = localStorage.getItem('token');
     return token != null ? token : '';
+  }
+
+  public setToken(token: string): void {
+    localStorage.setItem('token', token);
   }
 }
