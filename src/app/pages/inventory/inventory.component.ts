@@ -9,8 +9,8 @@ import {
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { InventoryActions } from 'src/app/store/inventory/actions/inventory.action';
-import { inventorySelectors } from 'src/app/store/inventory/selectors/inventory.selectors';
+import { InventoryActions } from '../../store/inventory/actions/inventory.action';
+import { inventorySelectors } from '../../store/inventory/selectors/inventory.selectors';
 import { InventoryRequest } from '../../shared/services/models/inventory.request';
 import { InventoryListComponent } from './components/inventory-list/inventory-list.component';
 

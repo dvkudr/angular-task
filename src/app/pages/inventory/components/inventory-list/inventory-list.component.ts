@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { InventoryModel } from 'src/app/store/inventory/models/inventory.model';
+import { InventoryModel } from '../../../../store/inventory/models/inventory.model';
 
 @Component({
   selector: 'app-inventory-list',

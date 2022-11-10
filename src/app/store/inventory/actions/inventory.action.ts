@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { InventoryRequest } from 'src/app/shared/services/models/inventory.request';
+import { InventoryRequest } from '../../../shared/services/models/inventory.request';
 import { InventoryModel } from '../models/inventory.model';
 
 export const InventoryActions = createActionGroup({

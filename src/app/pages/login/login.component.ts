@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { CommonActions } from 'src/app/store/common/actions/common.action';
+import { CommonActions } from '../../store/common/actions/common.action';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { CommonActions } from 'src/app/store/common/actions/common.action';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store) { }
 
   loginForm: FormGroup = this.fb.group({
     login: new FormControl(''),

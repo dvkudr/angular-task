@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { InventoryService } from 'src/app/inventory/inventory.service';
+import { InventoryService } from '../../../inventory/inventory.service';
 import { InventoryActions } from '../actions/inventory.action';
 import { InventoryModel } from '../models/inventory.model';
 

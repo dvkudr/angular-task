@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import {
   AuthToken,
   CommonService,
-} from 'src/app/shared/services/common.service';
+} from '../../../shared/services/common.service';
 import { CommonActions } from '../actions/common.action';
 
 @Injectable()
