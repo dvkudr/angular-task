@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CommonService } from './shared/services/common.service';
 import { AuthService } from './shared/services/auth.service';
-import { InventoryService } from './inventory/inventory.service';
+import { InventoryService } from './shared/services/inventory.service';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { ParameterComponent } from './pages/inventory/components/parameter/parameter.component';
 import { httpInterceptorProviders } from './interceptors/interceptor.index';

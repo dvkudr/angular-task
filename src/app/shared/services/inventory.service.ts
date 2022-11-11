@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { InventoryRequest } from '../shared/services/models/inventory.request';
-import { InventoryModel } from '../store/inventory/models/inventory.model';
+import { environment } from '../../../environments/environment';
+import { InventoryRequest } from './models/inventory.request';
+import { InventoryModel } from '../../store/inventory/models/inventory.model';
 
 @Injectable({
   providedIn: 'root',
