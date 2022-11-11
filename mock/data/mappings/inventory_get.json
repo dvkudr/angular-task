@@ -1,14 +1,15 @@
 {
-    "request": {
-        "method": "GET",
-        "urlPath": "/auth/resource/inventory/item"
+  "request": {
+    "method": "GET",
+    "urlPath": "/auth/resource/inventory/item"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json"
     },
-    "response": {
-        "status": 200,
-        "headers": {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json"            
-        },
-        "bodyFileName": "inventory.json"
-    }
+    "body": "inventory_{{request.query.pagesize}}.json",
+    "transformers": ["response-template"]
+  }
 }
