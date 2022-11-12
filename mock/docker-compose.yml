@@ -9,3 +9,6 @@ services:
       - '8080:8080'
     volumes:
       - ./data:/home/wiremock
+    command:
+      - --verbose
+      - --global-response-templating

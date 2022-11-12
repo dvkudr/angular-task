@@ -9,7 +9,6 @@
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
     },
-    "body": "inventory_{{request.query.pagesize}}.json",
-    "transformers": ["response-template"]
+    "bodyFileName": "inventory_{{request.query.pagesize}}.json"
   }
 }
