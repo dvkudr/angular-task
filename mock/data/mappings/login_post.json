@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/sso/auth/realms/mts/protocol/openid-connect/token"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json"
+    },
+    "jsonBody": { "access_token": "valid-access-token" }
+  }
+}

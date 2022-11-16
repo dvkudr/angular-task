@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { CommonService } from '../../shared/services/common.service';
+import { Store } from '@ngrx/store';
+import { CommonActions } from '../../store/common/actions/common.action';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +9,8 @@ import { CommonService } from '../../shared/services/common.service';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnDestroy {
-  readonly subscription: Subscription = new Subscription();
-
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private commonService: CommonService
-  ) {}
+export class LoginComponent {
+  constructor(private fb: FormBuilder, private store: Store) { }
 
   loginForm: FormGroup = this.fb.group({
     login: new FormControl(''),
@@ -26,27 +19,14 @@ export class LoginComponent implements OnDestroy {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const login = this.loginForm.value.login;
-      const password = this.loginForm.value.password;
-
-      this.subscription.add(
-        this.commonService.fetchToken(login, password).subscribe({
-          next: x => {
-            this.commonService.authToken$.next(x.access_token);
-            this.commonService.authError$.next('');
-            this.router.navigate(['']);
-          },
-          error: err => {
-            this.commonService.authToken$.next('');
-            this.commonService.authError$.next(err.message);
+      this.store.dispatch(
+        CommonActions.getToken({
+          payload: {
+            login: this.loginForm.value.login || '',
+            password: this.loginForm.value.password || '',
           },
         })
       );
     }
   }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 }
-

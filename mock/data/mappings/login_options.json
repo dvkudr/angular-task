@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "OPTIONS",
+    "url": "/sso/auth/realms/mts/protocol/openid-connect/token"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST,OPTIONS",
+      "Access-Control-Allow-Headers": "authorization,x-user-name"
+    }
+  }
+}

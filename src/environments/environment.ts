@@ -2,5 +2,7 @@ import { EnvironmentInterface } from "./environment-interface";
 
 export const environment: EnvironmentInterface = {
   production: false,
-  authDomainUrl: ""
+  authDomainUrl: "",
+  inventoryDomainUrl: "",
+  userName: ""
 };

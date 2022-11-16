@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { InventoryService } from 'src/app/inventory/inventory.service';
+import { InventoryActions } from '../../store/inventory/actions/inventory.action';
+import { inventorySelectors } from '../../store/inventory/selectors/inventory.selectors';
+import { InventoryRequest } from '../../shared/services/models/inventory.request';
+import { InventoryModel } from 'src/app/store/inventory/models/inventory.model';
 
 @Component({
   selector: 'app-inventory',
@@ -10,12 +14,11 @@ import { InventoryService } from 'src/app/inventory/inventory.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent {
-  @Input() public inventoryJson$ = new Observable<unknown>();
+  inventoryList$: Observable<InventoryModel[]>;
 
-  constructor(
-    private fb: FormBuilder,
-    private inventryService: InventoryService
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.inventoryList$ = this.store.select(inventorySelectors.inventory);
+  }
 
   inventoryForm: FormGroup = this.fb.group({
     type: new FormControl('2'),
@@ -26,16 +29,23 @@ export class InventoryComponent {
 
   onSubmit(): void {
     if (this.inventoryForm.valid) {
-      const type: number = this.inventoryForm.value.type;
-      const pageSize: number = this.inventoryForm.value.pageSize;
-      const stock: number = this.inventoryForm.value.stock;
-      const code: string = this.inventoryForm.value.code;
+      const request: InventoryRequest = {
+        type: this.inventoryForm.value.type,
+        location: 'MR_CENTER',
+        pageNum: 1,
+        pageSize: this.inventoryForm.value.pageSize,
+        status: 'available',
+        stock: this.inventoryForm.value.stock,
+        code: this.inventoryForm.value.code,
+        include: ['account', 'model', 'service'],
+      };
 
-      this.inventoryJson$ = this.inventryService.fetchInventory(
-        type,
-        pageSize,
-        stock,
-        code
+      this.store.dispatch(
+        InventoryActions.getInventory({
+          payload: {
+            request: request,
+          },
+        })
       );
     }
   }

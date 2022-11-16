@@ -67,6 +67,20 @@
                   "with": "src/environments/environment.dev.ts"
                 }
               ]
+            },
+            "mock": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mock.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "development"
@@ -79,6 +93,9 @@
             },
             "development": {
               "browserTarget": "angular-task:build:development"
+            },
+            "mock": {
+              "browserTarget": "angular-task:build:mock"
             }
           },
           "defaultConfiguration": "development"

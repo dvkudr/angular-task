@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DisplayTextComponent } from './display-text.component';
+import { InventoryListComponent } from './inventory-list.component';
 
-describe('DisplayTextComponent', () => {
-  let component: DisplayTextComponent;
-  let fixture: ComponentFixture<DisplayTextComponent>;
+describe('InventoryListComponent', () => {
+  let component: InventoryListComponent;
+  let fixture: ComponentFixture<InventoryListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DisplayTextComponent ]
+      declarations: [ InventoryListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DisplayTextComponent);
+    fixture = TestBed.createComponent(InventoryListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
