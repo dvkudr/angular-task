@@ -11,7 +11,7 @@ export class AuthService {
 
   public getToken(): string {
     const token = localStorage.getItem('token');
-    return token != null ? token : '';
+    return token || '';
   }
 
   public setToken(token: string): void {

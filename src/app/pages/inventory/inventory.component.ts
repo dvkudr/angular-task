@@ -1,18 +1,11 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { InventoryActions } from '../../store/inventory/actions/inventory.action';
 import { inventorySelectors } from '../../store/inventory/selectors/inventory.selectors';
 import { InventoryRequest } from '../../shared/services/models/inventory.request';
-import { InventoryListComponent } from './components/inventory-list/inventory-list.component';
+import { InventoryModel } from 'src/app/store/inventory/models/inventory.model';
 
 @Component({
   selector: 'app-inventory',
@@ -20,22 +13,11 @@ import { InventoryListComponent } from './components/inventory-list/inventory-li
   styleUrls: ['./inventory.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InventoryComponent implements AfterViewInit, OnDestroy {
-  @Input() public inventory: unknown = {};
+export class InventoryComponent {
+  inventoryList$: Observable<InventoryModel[]>;
 
-  @ViewChild('inventoryList') inventoryComponent!: InventoryListComponent;
-
-  readonly subscription: Subscription = new Subscription();
-
-  constructor(private fb: FormBuilder, private store: Store) { }
-
-  ngAfterViewInit(): void {
-    this.subscription.add(
-      this.store
-        .select(inventorySelectors.inventory)
-        .pipe()
-        .subscribe(x => (this.inventoryComponent.inventoryList$.next(x)))
-    );
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.inventoryList$ = this.store.select(inventorySelectors.inventory);
   }
 
   inventoryForm: FormGroup = this.fb.group({
@@ -66,9 +48,5 @@ export class InventoryComponent implements AfterViewInit, OnDestroy {
         })
       );
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
