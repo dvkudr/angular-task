@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { InventoryModel } from '../../../../store/inventory/models/inventory.model';
 
 @Component({
@@ -9,5 +8,5 @@ import { InventoryModel } from '../../../../store/inventory/models/inventory.mod
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryListComponent {
-  @Input() public inventoryList$: Observable<InventoryModel[]> | null = null;
+  @Input() public inventoryList: InventoryModel[] | null = null;
 }

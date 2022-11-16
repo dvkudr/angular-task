@@ -73,7 +73,7 @@
     </div>
     <div class="col" style="width: 85%; background-color: beige">
       <app-inventory-list
-        [inventoryList$]="inventoryList$"
+        [inventoryList]="inventoryList$ | async"
       ></app-inventory-list>
     </div>
   </div>
