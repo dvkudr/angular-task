@@ -21,20 +21,22 @@ export class InventoryComponent {
   }
 
   inventoryForm: FormGroup = this.fb.group({
+    region: new FormControl('MR_CENTER'),
     type: new FormControl('2'),
     pageSize: new FormControl('10'),
     stock: new FormControl('8'),
     code: new FormControl('2'),
+    status: new FormControl('available'),
   });
 
   onSubmit(): void {
     if (this.inventoryForm.valid) {
       const request: InventoryRequest = {
         type: this.inventoryForm.value.type,
-        location: 'MR_CENTER',
+        location: this.inventoryForm.value.region,
         pageNum: 1,
         pageSize: this.inventoryForm.value.pageSize,
-        status: 'available',
+        status: this.inventoryForm.value.status,
         stock: this.inventoryForm.value.stock,
         code: this.inventoryForm.value.code,
         include: ['account', 'model', 'service'],

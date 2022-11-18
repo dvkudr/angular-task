@@ -6,6 +6,20 @@
         [formGroup]="inventoryForm"
         (ngSubmit)="onSubmit()"
       >
+        <app-parameter controlId="selectRegion" labelText="Region">
+          <div>
+            <select
+              class="form-select"
+              id="selectRegion"
+              formControlName="region"
+              required
+              style="background-color: inherit"
+            >
+              <option selected value="MR_CENTER">Center</option>
+              <option value="MR_SOUTH">South</option>
+            </select>
+          </div>
+        </app-parameter>
         <app-parameter controlId="inputType" labelText="Type">
           <div>
             <input
@@ -62,6 +76,20 @@
               required
               style="background-color: inherit"
             />
+          </div>
+        </app-parameter>
+        <app-parameter controlId="selectStatus" labelText="Status">
+          <div>
+            <select
+              class="form-select"
+              id="selectStatus"
+              formControlName="status"
+              required
+              style="background-color: inherit"
+            >
+              <option selected value="available">Available</option>
+              <option value="unavailable">Unavailable</option>
+            </select>
           </div>
         </app-parameter>
         <div class="form-group" style="margin-top: 2rem">
