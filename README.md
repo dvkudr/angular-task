@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+```mermaid
+sequenceDiagram
+  note over ClientQueue: client database
+  note over Queue: GlobalQueues database
+  participant ClientQueue as DIEmailClientQueue
+  participant Queue as DIEmailQueue
+  participant Service as DIEmailService
+  ClientQueue->>Queue: message
+  Queue->>Service: message
+  Service->>Service: sending emails
+  alt hasDelayedDispatches?
+    Service-->>ClientQueue: message set to be resent after delay    
+  end
+```
